@@ -1,4 +1,5 @@
 #include "CarToSpawn.h"
+#include "CarDestroyer.h"
 #include "Components/StaticMeshComponent.h"
 
 
@@ -13,15 +14,10 @@ float ACarToSpawn::RandomSpeed(){
 }
 
 void ACarToSpawn::BeginPlay(){
-	
 	Super::BeginPlay();
-	Speed = RandomSpeed();
+	Speed = 0;
+	MaxSpeed = RandomSpeed();
 	FTimerHandle DelayTime;
-	GetWorldTimerManager().SetTimer(DelayTime, this, &ACarToSpawn::SetSpeedBeforeBraking, 0.2f, false);
-}
-
-void ACarToSpawn::SetSpeedBeforeBraking(){
-	SpeedBeforeBraking = Speed;
 }
 
 void ACarToSpawn::SphereTrace() {
@@ -50,42 +46,44 @@ void ACarToSpawn::SphereTrace() {
 	);
 
 	if (Hit) {
-		switch (SpeedLevel) {
+			switch (SpeedLevel) {
 
-		case 2:
-			if (Speed > 1)
-				Speed -= 0.02;
-			break;
+			case 2:
+				if (Speed > 1)
+					Speed -= 0.02;
+				break;
 
-		case 3:
-			if (Speed > 1)
-				Speed -= 0.04;
-			break;
+			case 3:
+				if (Speed > 1)
+					Speed -= 0.04;
+				break;
 
-		case 4:
-			if (Speed > 1)
-				Speed -= 0.06;
-			break;
+			case 4:
+				if (Speed > 1)
+					Speed -= 0.06;
+				break;
 
-		case 5:
-			if (Speed > 1)
-				Speed -= 0.08;
-			break;
+			case 5:
+				if (Speed > 1)
+					Speed -= 0.08;
+				break;
 
-		case 6:
-			if (Speed > 1)
-				Speed -= 0.1;
-			break;
+			case 6:
+				if (Speed > 1)
+					Speed -= 0.1;
+				break;
 
-		case 7:
-			if (Speed > 1)
-				Speed -= 0.12;
-			break;
-		}
+			case 7:
+				if (Speed > 1)
+					Speed -= 0.12;
+				break;
+			}
 }
-	else if (!Hit)
-		if (Speed < SpeedBeforeBraking)
+
+	else if (!Hit) {
+		if (Speed < MaxSpeed)
 			Speed += 0.01;
+	}
 }
 
 void ACarToSpawn::Tick(float DeltaTime) {

@@ -20,15 +20,14 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-	virtual void SetSpeedBeforeBraking();
-	void SphereTrace();	
+	virtual void SphereTrace();
 
 protected:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
 	float Speed{};
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
-	float SpeedBeforeBraking{};
+	float MaxSpeed{};
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
 	int32 SpeedLevel{};
