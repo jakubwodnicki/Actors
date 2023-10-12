@@ -8,7 +8,7 @@ ACarToSpawn::ACarToSpawn(){
 }
 
 float ACarToSpawn::RandomSpeed(){
-	float ranSpeed = FMath::RandRange(2, 7);
+	float ranSpeed = FMath::RandRange(2.0, 7.0);
 	SpeedLevel = FMath::FloorToInt(ranSpeed); ;
 	return ranSpeed;
 }

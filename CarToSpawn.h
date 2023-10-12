@@ -30,5 +30,5 @@ protected:
 	float MaxSpeed{};
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
-	int32 SpeedLevel{};
+	int SpeedLevel{};
 };

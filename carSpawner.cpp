@@ -5,7 +5,7 @@ AcarSpawner::AcarSpawner(){
 }
 
 float AcarSpawner::RepeatSpawnTime(){
-	float spawnDelay = FMath::RandRange(2, 6);
+	float spawnDelay = FMath::RandRange(3, 9);
 	return spawnDelay;
 }
 
@@ -19,8 +19,9 @@ void AcarSpawner::RepeatSpawn(){
 void AcarSpawner::SpawnStart(){
 	FTimerHandle SpawnTimer;
 	float newDelayTime = RepeatSpawnTime();
-	int32 timer = newDelayTime;
-	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow, FString::Printf(TEXT("New car will appear in: %i seconds"), timer));
+	int timer = newDelayTime;
+	GEngine->AddOnScreenDebugMessage(-1, timer, FColor::Yellow, FString::Printf(TEXT("The car will appear randomly at intervals of 3 to 9 seconds")));
+	GEngine->AddOnScreenDebugMessage(-1, timer, FColor::Yellow, FString::Printf(TEXT("New car will appear in: %i seconds"), timer));
 	GetWorldTimerManager().SetTimer(SpawnTimer, this, &AcarSpawner::RepeatSpawn, newDelayTime, false);
 }
 
