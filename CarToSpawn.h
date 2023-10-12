@@ -25,11 +25,11 @@ protected:
 
 protected:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
-	float Speed;
+	float Speed{};
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
-	float SpeedBeforeBraking;
+	float SpeedBeforeBraking{};
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "CarSpeed")
-	int32 SpeedLevel;
+	int32 SpeedLevel{};
 };
